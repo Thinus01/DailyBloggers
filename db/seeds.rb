@@ -18,7 +18,7 @@
                         text: "This is post #{j+1} by #{user.name}.",
                         comments_counter: 0, likes_counter: 0,
                         author_id: user.id)
-
+          
     # Update counters for the current post
     Post.update_counters(post.id, comments_counter: post.comments.count, likes_counter: post.likes.count)
   end
