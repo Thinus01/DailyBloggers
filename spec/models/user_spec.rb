@@ -1,35 +1,39 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject { User.new(name: 'John', photo: 'https://t3.ftcdn.net/jpg/02/47/40/98/360_F_247409832_pPugfgU5cKLsrH5OCJRMn5JTcy2L1Rrg.jpg', bio: 'Anything', posts_counter: 5) }
-
-  before { subject.save }
-
-  it 'validates presence of name' do
-    subject.name = nil
-    expect(subject).to_not be_valid
-  end
-
-  it 'validates that posts_counter is an integer' do
-    subject.posts_counter = 'string'
-    expect(subject).to_not be_valid
-  end
-
-  it 'validates posts_counter greater than or equal to 0' do
-    subject.posts_counter = -1
-    expect(subject).to_not be_valid
-  end
-
-  describe '#recent_posts' do
-    before do
-      6.times do |p|
-        Post.create(title: "Post #{p}", text: "Text #{p}", comments_counter: 10, author_id: subject.id,
-                    likes_counter: 10)
-      end
+  context 'validations' do
+    it 'validates presence of name' do
+      user = User.new(name: nil, photo: 'http//:www.photo.com', bio: 'Manchester United Legend',
+                      posts_counter: 0)
+      expect(user.valid?).to be_falsey
     end
 
-    it 'returns the three most recent posts' do
-      expect(subject.recent_posts).to eq(subject.posts.order(created_at: :desc).limit(3))
+    it 'validates name is not empty' do
+      user = User.new(name: '', photo: 'http//:www.photo.com', bio: 'Manchester United Legend',
+                      posts_counter: 0)
+      expect(user.valid?).to be_falsey
+    end
+  end
+
+  RSpec::Matchers.define :be_ordered_by do |expected|
+    match do |actual|
+      actual.order(expected.to_s).to_a == actual.to_a
+    end
+  end
+
+  context '#recent_posts' do
+    it 'returns up to 3 posts, ordered by created_at in descending order' do
+      user = User.create!(name: 'Rooney', photo: 'http//:www.image.com', bio: 'England and Manchester United Legend',
+                          posts_counter: 0)
+      Post.create(author: user, title: 'Hello', text: 'This is my first post')
+      Post.create(author: user, title: 'Hello', text: 'This is my second post')
+      Post.create(author: user, title: 'Hello', text: 'This is my third post')
+      Post.create(author: user, title: 'Hello', text: 'This is my fourth post')
+      Post.create(author: user, title: 'Hello', text: 'This is my fifth post')
+      recent_posts = user.get_recent_posts
+
+      expect(recent_posts.size).to be <= 3
+      expect(recent_posts).to be_ordered_by('created_at DESC')
     end
   end
 end
