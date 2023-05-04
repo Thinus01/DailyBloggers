@@ -63,6 +63,6 @@ RSpec.describe 'PostShow', type: :feature do
 
     it 'displays the post author name' do
       expect(page).to have_content(@post.author.name)
-    end    
+    end
   end
 end
