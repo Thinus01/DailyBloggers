@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     @user = User.includes(:posts).find(params[:user_id])
     @posts = @user.posts.order(created_at: :desc)
   end
+  
   def show
     @post = Post.includes(:comments, :likes).where(author_id: params[:user_id]).find(params[:id])
     @user = User.find(params[:user_id])
