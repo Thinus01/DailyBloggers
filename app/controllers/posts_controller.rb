@@ -22,6 +22,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    post_params = params.require(:new_post).permit(:title, :text)
     post = Post.new(post_params)
     post.author = current_user
     post.comments_counter = 0
@@ -38,11 +39,5 @@ class PostsController < ApplicationController
         end
       end
     end
-  end
-
-  private
-
-  def post_params
-    params.require(:new_post).permit(:title, :text)
   end
 end
