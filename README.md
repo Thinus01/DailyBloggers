@@ -109,6 +109,11 @@ rspec spec
 - Twitter: [@thinus_v_d_v](https://twitter.com/thinus_v_d_v)
 - LinkedIn: [Thinus Van De Venter](https://www.linkedin.com/in/thinus-van-de-venter-99aa26203)
 
+👤 **Amaka Konwea**:
+- GitHub: [@lawrah_on_GitHub](https://github.com/lawrahkonwea)
+- Twitter: [@lawrah_on_Twitter](https://twitter.com/lawrah_xo)
+- LinkedIn: [@laura_on_LinkedIn](https://www.linkedin.com/in/amakalaurakonwea/)
+
 ## 🎯 Future Features  <a name="future-features"></a>
 
 - [ ] Add tests
