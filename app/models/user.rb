@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable, :confirmable
-  has_many :posts, foreign_key: 'author_id', dependent: :destroy
-  has_many :likes, foreign_key: 'author_id', dependent: :destroy
-  has_many :comments, foreign_key: 'author_id', dependent: :destroy
+  has_many :posts, foreign_key: 'author_id', inverse_of: :author, dependent: :destroy
+  has_many :likes, foreign_key: 'author_id', inverse_of: :author, dependent: :destroy
+  has_many :comments, foreign_key: 'author_id', inverse_of: :author, dependent: :destroy
 
   # For the User model:Name must not be blank.
   validates :name, presence: true
