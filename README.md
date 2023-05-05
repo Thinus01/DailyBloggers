@@ -114,6 +114,11 @@ rspec spec
 - Twitter: [@lawrah_on_Twitter](https://twitter.com/lawrah_xo)
 - LinkedIn: [@laura_on_LinkedIn](https://www.linkedin.com/in/amakalaurakonwea/)
 
+ 👤 **Fahim Khan**:
+
+- GitHub: [Fahim-Khan-P](https://github.com/Fahim-Khan-P/)
+- LinkedIn: [Fahim Khan](https://www.linkedin.com/in/fahimkhan-p/)
+
 ## 🎯 Future Features  <a name="future-features"></a>
 
 - [ ] Add tests
